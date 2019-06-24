@@ -30,12 +30,10 @@ public class Registracia_Test {
             driver.get(BASE_URL);
             driver.manage().window().maximize();
             driver.findElement(By.id("checkbox")).click();
-
             driver.findElement(By.name("email")).sendKeys("iva@test.sk");
             driver.findElement(By.name("name")).sendKeys("Ivana");
             driver.findElement(By.name("surname")).sendKeys("Testersonova");
             driver.findElement(By.xpath("//button[@type='submit']")).click();
-
         }
 
         @Test
@@ -43,20 +41,17 @@ public class Registracia_Test {
             driver.get(BASE_URL);
             driver.manage().window().maximize();
             driver.findElement(By.id("checkbox")).click();
-
             driver.findElement(By.name("email")).sendKeys("iva@test.sk");
             driver.findElement(By.name("name")).sendKeys("Ivana");
             driver.findElement(By.name("surname")).sendKeys("Testersonova");
             driver.findElement(By.name("password")).sendKeys("blud");
             driver.findElement(By.name("password-repeat")).sendKeys("nieblud");
             driver.findElement(By.xpath("//button[@type='submit']")).click();
-
         }
 
         @After
         public void tearDown(){
         driver.close();
         driver.quit();
-
         }
 }
