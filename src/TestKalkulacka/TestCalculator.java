@@ -50,7 +50,6 @@ public class TestCalculator {
     @Test
     public void testInvalidInputs(){
 
-
     }
 
     @After
