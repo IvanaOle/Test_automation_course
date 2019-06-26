@@ -8,17 +8,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ClickMeBaby_Clicks {
-    private WebDriver driver;
-    private String Base_URL = "http:/localhost:8888/clickmebaby.php";
+public class ClickMeBaby_Clicks extends MainTest {
 
     @Before
-    public void SetUp(){
-        driver = new FirefoxDriver();
+    public void openBaseUrl(){
+    driver.get(getBASE_URL() + "clickmebaby.php");
+
     }
     @Test
     public void Test(){
-        driver.get(Base_URL);
         Assert.assertEquals("Inicialny pocet klikov", "0", driver.findElement(By.id("clicks")).getText());
         Assert.assertEquals("klikov",driver.findElement((By.className("description"))).getText());
         for (int i = 1; i < 21; i++) {
@@ -40,10 +38,6 @@ public class ClickMeBaby_Clicks {
 
 
         }
-    }
-    @After
-    public void tearDown(){
-        driver.quit();
     }
 
 }

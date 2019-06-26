@@ -8,16 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestCalculator {
-    private String BASE_URL = "http:/localhost:8888/kalkulacka.php";
-    private WebDriver driver;
+import java.util.Base64;
 
+public class TestCalculator extends MainTest {
 
     @Before
-    public void setUp(){
-        driver = new FirefoxDriver();
-        driver.get(BASE_URL);
-        driver.manage().window().maximize();
+    public void openBaseUrl(){
+        driver.get(getBASE_URL() + "kalkulacka.php");
     }
 
     @Test
@@ -61,13 +58,6 @@ public class TestCalculator {
                 .getAttribute("class").contains("has-error"));
         Assert.assertTrue(driver.findElement(By.xpath("//div[input[@id='secondInput']]"))
                 .getAttribute("class").contains("has-error"));
-    }
-
-    @After
-    public void tearDown(){
-//        driver.close();
-//        driver.quit();
-
     }
     private void checkSum(String firstInput, String secondInput, String count, String s3) {
         checkDeduct(secondInput, firstInput, count, s3);
