@@ -20,7 +20,6 @@ public class TestCalculator {
         driver.manage().window().maximize();
     }
 
-
     @Test
     public void testSum(){
         checkSum("1", "2", "count", "3");
@@ -29,6 +28,10 @@ public class TestCalculator {
         checkSum("-100", "100", "count", "0");
     }
 
+    @Test
+    public void enterInputs(){
+        enterInput("5","5");
+    }
 
     @Test
     public void testDeduc(){
@@ -41,19 +44,29 @@ public class TestCalculator {
 
     @Test
     public void testReset(){
+    enterInput("5","4");
+        driver.findElement(By.id("count")).click();
+        driver.findElement(By.id("reset")).click();
 
-
+        Assert.assertTrue(driver.findElement(By.id("firstInput")).getAttribute("value").isEmpty());
+        Assert.assertTrue(driver.findElement(By.id("secondInput")).getAttribute("value").isEmpty());
+        Assert.assertTrue(driver.findElement(By.id("result")).getText().isEmpty());
     }
 
     @Test
     public void testInvalidInputs(){
-
+    enterInput("blud 1","blud 2");
+    driver.findElement(By.id("count")).click();
+        Assert.assertTrue(driver.findElement(By.xpath("//div[input[@id='firstInput']]"))
+                .getAttribute("class").contains("has-error"));
+        Assert.assertTrue(driver.findElement(By.xpath("//div[input[@id='secondInput']]"))
+                .getAttribute("class").contains("has-error"));
     }
 
     @After
     public void tearDown(){
-        driver.close();
-        driver.quit();
+//        driver.close();
+//        driver.quit();
 
     }
     private void checkSum(String firstInput, String secondInput, String count, String s3) {
@@ -66,5 +79,12 @@ public class TestCalculator {
         driver.findElement(By.id("secondInput")).sendKeys(s2);
         driver.findElement(By.id(deduct)).click();
         Assert.assertEquals(s3, driver.findElement(By.id("result")).getText());
+    }
+
+    private void enterInput(String firstInput, String secondInput) {
+        driver.findElement(By.id("firstInput")).clear();
+        driver.findElement(By.id("firstInput")).sendKeys(firstInput);
+        driver.findElement(By.id("secondInput")).clear();
+        driver.findElement(By.id("secondInput")).sendKeys(secondInput);
     }
 }
