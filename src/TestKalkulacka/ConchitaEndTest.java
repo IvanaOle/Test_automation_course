@@ -7,27 +7,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ConchitaEndTest {
-    private String BASE_URL = "http://localhost:8888/zenaalebomuz.php";
-    private WebDriver driver;
+public class ConchitaEndTest extends MainTest {
 
     @Before
-    public void setUp(){
-        driver = new FirefoxDriver();
+    public void openBaseUrl(){
+        driver.get(getBASE_URL()+ "zenaalebomuz.php");
     }
 
     @Test
     public void test(){
-        driver.get(BASE_URL);
         System.out.println(driver.findElement(By.tagName("h1")).getText());
-
-    }
-    @After
-    public void tearDown(){
-        driver.close(); //zavrie aktivne okno - jedno konkretne okno ale chceme v teste pokracovat
-        driver.quit(); //uzavrie celu session - vsetko zavrie
-
-
 
     }
 }

@@ -12,18 +12,14 @@ import org.testng.Assert;
 import java.sql.SQLOutput;
 import java.util.List;
 
-public class Registracia_Test {
-        private String BASE_URL = "http:/localhost:8888/registracia.php";
-        private WebDriver driver;
+public class Registracia_Test extends MainTest {
         private String validEmail = "iva@test.sk";
         private String validName = "Ivana";
         private String validSurname = "Testersen";
 
         @Before
-        public void setUp(){
-            driver = new FirefoxDriver();
-            driver.get(BASE_URL);
-            driver.manage().window().maximize();
+        public void openBaseUrl(){
+            driver.get(getBASE_URL() + "registracia.php");
         }
 
         @Test
@@ -97,10 +93,4 @@ public class Registracia_Test {
 
         }
 
-
-        @After
-        public void tearDown(){
-//        driver.close();
-//        driver.quit();
-        }
 }
