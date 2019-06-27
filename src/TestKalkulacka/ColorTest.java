@@ -9,22 +9,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.Color;
-
 import java.util.List;
 
-public class ColorTest {
-    private String BASE_URL = "http:/localhost:8888/stroopeffect.php";
-    private WebDriver driver;
+public class ColorTest extends MainTest {
 
     @Before
-    public void setUp(){
-        driver = new FirefoxDriver();
+    public void openUrl(){
+        driver.get(getBASE_URL() + "stroopeffect.php");
     }
-
-
     @Test
     public void test(){
-        driver.get(BASE_URL);
         //System.out.println(driver.findElement(By.xpath("//div[contains(@class,'colours')]/h1[1]")).getText());
         //driver.findElement(By.xpath("//div[contains(@class,'colours')]/h1[1]")).getCssValue("color");
         //System.out.println(driver.findElement(By.xpath("//div[contains(@class,'colours')]/h1[1]")).getCssValue("color"));
@@ -40,12 +34,6 @@ public class ColorTest {
         String rgba = driver.findElement(By.xpath("//div[contains(@class,'colours')]/h1[1]")).getCssValue("color");
         String hexColor = Color.fromString(rgba).asHex();
         Assert.assertEquals("#ff0e0e",hexColor);
-
     }
-    @After
-    public void tearDown(){
-
-    }
-
 
 }

@@ -1,7 +1,6 @@
 package TestKalkulacka;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,7 +22,6 @@ public class MainTest {
 
     @After
     public void tearDown(){
-        driver.close();
         driver.quit();
     }
 }
